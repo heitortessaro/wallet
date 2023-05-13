@@ -46,3 +46,9 @@ The backend will be developed using the Nestjs framework. It was choosed becouse
 The Prisma ORM will be used because its data model is very intuitive. In addition, Prisma studio makes development easier.
 
 For the database, the Postgress was selected because it is one of most used sequential databases used in the market.
+
+### Important commands
+
+#### Docker 
+
+* `docker compose up dev-db -d`: creates the Postgress data base docker.
