@@ -47,6 +47,10 @@ The Prisma ORM will be used because its data model is very intuitive. In additio
 
 For the database, the Postgress was selected because it is one of most used sequential databases used in the market.
 
+### Aditional specifications
+
+To perform validations, [Class Validators](https://docs.nestjs.com/pipes#class-validator) were used.
+
 ### Important commands
 
 #### Docker 
