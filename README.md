@@ -52,3 +52,9 @@ For the database, the Postgress was selected because it is one of most used sequ
 #### Docker 
 
 * `docker compose up dev-db -d`: creates the Postgress data base docker.
+
+#### Prisma
+
+* `npx prisma --help`: presents all available prisma commands.
+* `npx prisma studio`: provides an easy way to check the database.
+* `npx prisma migrate dev`: create migrations from your Prisma schema, apply them to the database, generate artifacts.

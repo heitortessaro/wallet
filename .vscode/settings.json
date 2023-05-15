@@ -1,6 +1,7 @@
 {
   "conventionalCommits.scopes": [
     "Auth",
-    "database"
+    "database",
+    "docs"
   ]
 }
