@@ -20,4 +20,12 @@ export class AuthDto {
     message: 'password too weak',
   })
   password: string;
+
+  @IsString()
+  @IsNotEmpty()
+  fistName: string;
+
+  @IsString()
+  @IsNotEmpty()
+  lastName: string;
 }
