@@ -1,6 +1,7 @@
 import {
   IsEmail,
   IsNotEmpty,
+  IsOptional,
   IsString,
   Matches,
   MaxLength,
@@ -21,10 +22,12 @@ export class AuthDto {
   })
   password: string;
 
+  @IsOptional()
   @IsString()
   @IsNotEmpty()
   fistName: string;
 
+  @IsOptional()
   @IsString()
   @IsNotEmpty()
   lastName: string;
