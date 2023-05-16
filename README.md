@@ -53,6 +53,8 @@ To perform validations, [Class Validators](https://docs.nestjs.com/pipes#class-v
 
 The [Argon2](https://www.npmjs.com/package/argon2) is used to hash passwords. It replaces the bcript library, because on the bcript implementation, only the first 72 bytes of a string are used.
 
+For authentication [Passport](https://docs.nestjs.com/recipes/passport) library was used. It's straightforward to integrate this library with a Nest application using the @nestjs/passport module.
+
 ### Important commands
 
 #### Scripts
