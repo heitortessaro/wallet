@@ -51,9 +51,15 @@ For the database, the Postgress was selected because it is one of most used sequ
 
 To perform validations, [Class Validators](https://docs.nestjs.com/pipes#class-validator) were used.
 
+The [Argon2](https://www.npmjs.com/package/argon2) is used to hash passwords. It replaces the bcript library, because on the bcript implementation, only the first 72 bytes of a string are used.
+
 ### Important commands
 
-#### Docker 
+#### Scripts
+
+* `npm run db:dev:restart`: it restarts the database.
+
+#### Docker
 
 * `docker compose up dev-db -d`: creates the Postgress data base docker.
 
