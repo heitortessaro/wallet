@@ -2,7 +2,8 @@
   "conventionalCommits.scopes": [
     "Auth",
     "database",
-    "docs"
+    "docs",
+    "e2e test"
   ],
   "[python]": {
     "editor.defaultFormatter": "ms-python.black-formatter"
