@@ -46,3 +46,27 @@ The backend will be developed using the Nestjs framework. It was choosed becouse
 The Prisma ORM will be used because its data model is very intuitive. In addition, Prisma studio makes development easier.
 
 For the database, the Postgress was selected because it is one of most used sequential databases used in the market.
+
+### Aditional specifications
+
+To perform validations, [Class Validators](https://docs.nestjs.com/pipes#class-validator) were used.
+
+The [Argon2](https://www.npmjs.com/package/argon2) is used to hash passwords. It replaces the bcript library, because on the bcript implementation, only the first 72 bytes of a string are used.
+
+For authentication [Passport](https://docs.nestjs.com/recipes/passport) library was used. It's straightforward to integrate this library with a Nest application using the @nestjs/passport module. To protect routes, the a Passport JWT strategy was defined. For further information regarding the use of Passport JWT use this [link](https://docs.nestjs.com/recipes/passport#implementing-passport-jwt).
+
+### Important commands
+
+#### Scripts
+
+* `npm run db:dev:restart`: it restarts the database.
+
+#### Docker
+
+* `docker compose up dev-db -d`: creates the Postgress data base docker.
+
+#### Prisma
+
+* `npx prisma --help`: presents all available prisma commands.
+* `npx prisma studio`: provides an easy way to check the database.
+* `npx prisma migrate dev`: create migrations from your Prisma schema, apply them to the database, generate artifacts.

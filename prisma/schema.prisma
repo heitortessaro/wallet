@@ -1,0 +1,77 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  email String @unique
+  hash  String
+
+  firstName String?
+  lastName  String?
+
+  UserStockInfo  UserStockInfo[]
+  StockOperation StockOperation[]
+
+  @@map("users")
+}
+
+model StockOperation {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  StockCode     String
+  quantity      Int
+  unitValue     Float
+  operationType OperationType @default(BUY)
+
+  userId Int
+  user   User @relation(fields: [userId], references: [id])
+
+  @@map("stockOperations")
+}
+
+model StockList {
+  id            Int             @id @default(autoincrement())
+  stockCode     String          @unique
+  UserStockInfo UserStockInfo[]
+
+  @@map("stockList")
+}
+
+model UserStockInfo {
+  id    Int        @id @default(autoincrement())
+  state StockState @default(STUDING)
+
+  stockCode String
+  stock     StockList @relation(fields: [stockCode], references: [stockCode])
+
+  userId Int
+  user   User @relation(fields: [userId], references: [id])
+
+  @@map("userStockInfo")
+}
+
+enum StockState {
+  BUY
+  STUDING
+  SELL
+  QUARENTINE
+}
+
+enum OperationType {
+  BUY
+  SELL
+}
