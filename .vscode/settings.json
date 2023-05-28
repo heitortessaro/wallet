@@ -4,7 +4,8 @@
     "database",
     "docs",
     "e2e test",
-    "user"
+    "user",
+    "stoke-operations"
   ],
   "[python]": {
     "editor.defaultFormatter": "ms-python.black-formatter"
