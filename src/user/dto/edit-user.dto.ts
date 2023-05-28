@@ -1,6 +1,5 @@
 import {
   IsEmail,
-  IsNotEmpty,
   IsOptional,
   IsString,
   Matches,
@@ -8,28 +7,25 @@ import {
   MinLength,
 } from 'class-validator';
 
-export class AuthDto {
+export class EditUserDto {
   @IsEmail()
   @IsOptional()
-  email: string;
+  email?: string;
 
-  @IsOptional()
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   @MinLength(8)
   @MaxLength(20)
   @Matches(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/, {
-    message: 'password too weak',
+    message: 'Password too weak',
   })
-  password: string;
+  password?: string;
 
-  @IsOptional()
   @IsString()
-  @IsNotEmpty()
-  fistName: string;
+  @IsOptional()
+  firstName?: string;
 
-  @IsOptional()
   @IsString()
-  @IsNotEmpty()
-  lastName: string;
+  @IsOptional()
+  lastName?: string;
 }
