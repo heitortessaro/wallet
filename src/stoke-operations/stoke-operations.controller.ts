@@ -39,10 +39,10 @@ export class StokeOperationsController {
     @GetUser('id') userId: number,
     @Body() dto: CreateStokeOperation,
   ) {
-    return `post ${dto} for ${userId}`;
+    return `post ${dto.unitValue} for ${userId}`;
   }
 
-  @Patch()
+  @Patch(':id')
   editStokeOperation(
     @GetUser('id') userId: number,
     @Param('id', ParseIntPipe) stokeOperationId: number,
@@ -52,7 +52,7 @@ export class StokeOperationsController {
   }
 
   @HttpCode(HttpStatus.NO_CONTENT)
-  @Delete('id')
+  @Delete(':id')
   deleteStokeOperation(
     @GetUser('id') userId: number,
     @Param('id', ParseIntPipe) stokeOperationId: number,
