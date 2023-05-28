@@ -55,11 +55,16 @@ The [Argon2](https://www.npmjs.com/package/argon2) is used to hash passwords. It
 
 For authentication [Passport](https://docs.nestjs.com/recipes/passport) library was used. It's straightforward to integrate this library with a Nest application using the @nestjs/passport module. To protect routes, the a Passport JWT strategy was defined. For further information regarding the use of Passport JWT use this [link](https://docs.nestjs.com/recipes/passport#implementing-passport-jwt).
 
+Instead of unit tests, in this project E2E tests were developed due to time limitations. Thus we can fast check if the main system functions are working properly. To create the tests the [PactumJs](https://pactumjs.github.io/) library was used. NestJs uses super tests. However, the option for PactumJs was motivated by a NestJs creator recomendation.
+
 ### Important commands
 
 #### Scripts
 
 * `npm run db:dev:restart`: it restarts the database.
+* `npm run db:test:restart`: it restarts the test database.
+* `npm run start:dev`: starts the server in dev mode.
+* `npm run test:e2e`: it runs all e2e tests. A db is created just for testing, and for each test run, the db is clean up.
 
 #### Docker
 
