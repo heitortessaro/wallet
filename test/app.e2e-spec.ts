@@ -5,6 +5,7 @@ import { PrismaService } from '../src/prisma/prisma.service';
 // pactum is a request making library, so it need a server/api to make these requests
 import * as pactum from 'pactum';
 import { AuthDto } from '../src/auth/dto';
+import { EditUserDto } from '../src/user/dto';
 
 describe('App e2e', () => {
   let app: INestApplication;
@@ -39,7 +40,7 @@ describe('App e2e', () => {
     const dto: AuthDto = {
       email: 'test@test.com',
       password: 'StrongPassword123',
-      fistName: 'testName',
+      firstName: 'testName',
       lastName: 'LastName',
     };
 
@@ -50,7 +51,7 @@ describe('App e2e', () => {
           .post('/auth/signup')
           .withBody({
             password: dto.password,
-            firstName: dto.fistName,
+            firstName: dto.firstName,
             lastName: dto.lastName,
           })
           .expectStatus(400);
@@ -61,7 +62,7 @@ describe('App e2e', () => {
           .post('/auth/signup')
           .withBody({
             email: dto.email,
-            firstName: dto.fistName,
+            firstName: dto.firstName,
             lastName: dto.lastName,
           })
           .expectStatus(400);
@@ -107,6 +108,48 @@ describe('App e2e', () => {
           })
           .expectStatus(200)
           .stores('userAthorizationToken', 'access_token');
+      });
+    });
+  });
+
+  describe('User', () => {
+    describe('Get me', () => {
+      it('should not get current user', () => {
+        return pactum
+          .spec()
+          .get('/users/me')
+          .withHeaders({
+            Authorization: 'Bearer no token',
+          })
+          .expectStatus(401);
+      });
+      it('should get current user', () => {
+        return pactum
+          .spec()
+          .get('/users/me')
+          .withHeaders({
+            Authorization: 'Bearer $S{userAthorizationToken}',
+          })
+          .expectStatus(200);
+      });
+    });
+    describe('Edit user', () => {
+      it('should edit the current user', () => {
+        const dto: EditUserDto = {
+          email: 'new-test@testmail.com',
+          firstName: 'testName',
+        };
+
+        return pactum
+          .spec()
+          .patch('/users')
+          .withHeaders({
+            Authorization: 'Bearer $S{userAthorizationToken}',
+          })
+          .withBody(dto)
+          .expectStatus(200)
+          .expectBodyContains(dto.firstName)
+          .expectBodyContains(dto.email);
       });
     });
   });

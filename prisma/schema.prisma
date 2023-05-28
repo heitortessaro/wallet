@@ -32,7 +32,7 @@ model StockOperation {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  StockCode     String
+  stockCode     String
   quantity      Int
   unitValue     Float
   operationType OperationType @default(BUY)
