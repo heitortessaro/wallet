@@ -1,5 +1,6 @@
 import {
   IsDate,
+  IsDateString,
   IsEnum,
   IsInt,
   IsNotEmpty,
@@ -28,9 +29,6 @@ export class CreateStokeOperation {
   @IsNumber()
   @IsNotEmpty()
   @Min(0, { message: 'Invalid unit value, it must be bigger than 0.' })
-  @Matches(/^\d+(\.\d{1,2})?$/, {
-    message: 'Invalid float number with 2 decimals',
-  })
   unitValue: number;
 
   @IsString()
@@ -42,6 +40,6 @@ export class CreateStokeOperation {
 
   @IsString()
   @IsNotEmpty()
-  @IsDate()
+  @IsDateString()
   operationDate: string;
 }

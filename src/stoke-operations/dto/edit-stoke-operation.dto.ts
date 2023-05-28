@@ -28,9 +28,6 @@ export class EditStokeOperation {
   @IsNumber()
   @IsOptional()
   @Min(0, { message: 'Invalid unit value, it must be bigger than 0.' })
-  @Matches(/^\d+(\.\d{1,2})?$/, {
-    message: 'Invalid float number with 2 decimals',
-  })
   unitValue?: number;
 
   @IsString()
