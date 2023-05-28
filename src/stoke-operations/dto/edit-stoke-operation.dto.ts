@@ -1,12 +1,11 @@
 import {
-  IsDate,
   IsEnum,
   IsInt,
   IsOptional,
   IsNumber,
   IsString,
-  Matches,
   Min,
+  IsDateString,
 } from 'class-validator';
 
 enum TransactionType {
@@ -39,6 +38,6 @@ export class EditStokeOperation {
 
   @IsString()
   @IsOptional()
-  @IsDate()
+  @IsDateString()
   operationDate?: string;
 }
