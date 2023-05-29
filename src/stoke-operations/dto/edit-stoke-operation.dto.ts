@@ -8,15 +8,17 @@ import {
   IsDateString,
 } from 'class-validator';
 
-enum TransactionType {
-  Buy = 'buy',
-  Sell = 'sell',
-}
+import { OperationType } from '@prisma/client';
+
+// enum TransactionType {
+//   BUY = 'BUY',
+//   SELL = 'SELL',
+// }
 
 export class EditStokeOperation {
   @IsString()
   @IsOptional()
-  code?: string;
+  stockCode?: string;
 
   @IsNumber()
   @IsOptional()
@@ -31,10 +33,10 @@ export class EditStokeOperation {
 
   @IsString()
   @IsOptional()
-  @IsEnum(TransactionType, {
+  @IsEnum(OperationType, {
     message: 'operationType must be "buy" or "sell".',
   })
-  operationType?: string;
+  operationType?: OperationType;
 
   @IsString()
   @IsOptional()

@@ -8,15 +8,17 @@ import {
   Min,
 } from 'class-validator';
 
-enum TransactionType {
-  Buy = 'buy',
-  Sell = 'sell',
-}
+import { OperationType } from '@prisma/client';
+
+// enum TransactionType {
+//   BUY = 'BUY',
+//   SELL = 'SELL',
+// }
 
 export class CreateStokeOperation {
   @IsString()
   @IsNotEmpty()
-  code: string;
+  stockCode: string;
 
   @IsNumber()
   @IsNotEmpty()
@@ -29,12 +31,12 @@ export class CreateStokeOperation {
   @Min(0, { message: 'Invalid unit value, it must be bigger than 0.' })
   unitValue: number;
 
-  @IsString()
+  // @IsString()
   @IsNotEmpty()
-  @IsEnum(TransactionType, {
+  @IsEnum(OperationType, {
     message: 'operationType must be "buy" or "sell".',
   })
-  operationType: string;
+  operationType: OperationType;
 
   @IsString()
   @IsNotEmpty()
