@@ -23,15 +23,18 @@ export class StokeOperationsController {
 
   @Get()
   getStokeOperations(@GetUser('id') userId: number) {
-    return `get all for ${userId}`;
+    return this.stokeOperationsService.getStokeOperations(userId);
   }
 
   @Get(':id')
   getStokeOperationById(
-    @Param('id') id: string,
+    @Param('id', ParseIntPipe) stokeOperationId: number,
     @GetUser('id') userId: number,
   ) {
-    return `get ${id} for ${userId}`;
+    return this.stokeOperationsService.getStokeOperationById(
+      userId,
+      stokeOperationId,
+    );
   }
 
   @Post()
@@ -39,7 +42,7 @@ export class StokeOperationsController {
     @GetUser('id') userId: number,
     @Body() dto: CreateStokeOperation,
   ) {
-    return `post ${dto.unitValue} for ${userId}`;
+    return this.stokeOperationsService.createStokeOperation(userId, dto);
   }
 
   @Patch(':id')
@@ -48,7 +51,11 @@ export class StokeOperationsController {
     @Param('id', ParseIntPipe) stokeOperationId: number,
     @Body() dto: EditStokeOperation,
   ) {
-    return `patch param ${stokeOperationId} with dto ${dto} for ${userId}`;
+    return this.stokeOperationsService.editStokeOperation(
+      userId,
+      stokeOperationId,
+      dto,
+    );
   }
 
   @HttpCode(HttpStatus.NO_CONTENT)
@@ -57,6 +64,9 @@ export class StokeOperationsController {
     @GetUser('id') userId: number,
     @Param('id', ParseIntPipe) stokeOperationId: number,
   ) {
-    return `delete param ${stokeOperationId} for ${userId}`;
+    return this.stokeOperationsService.deleteStokeOperationById(
+      userId,
+      stokeOperationId,
+    );
   }
 }
