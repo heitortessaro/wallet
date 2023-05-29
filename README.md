@@ -75,3 +75,4 @@ Instead of unit tests, in this project E2E tests were developed due to time limi
 * `npx prisma --help`: presents all available prisma commands.
 * `npx prisma studio`: provides an easy way to check the database.
 * `npx prisma migrate dev`: create migrations from your Prisma schema, apply them to the database, generate artifacts.
+* `npx prisma generate`: based on the schema analysis, Prisma generates a type-safe database client called the Prisma Client. The Prisma Client provides auto-generated methods and types that correspond to your defined models and allow you to interact with your database. It's important to run prisma generate whenever you make changes to your Prisma schema so that the generated Prisma Client is up to date with your database structure. This ensures that you have access to the latest methods and types when interacting with your database in your application code.

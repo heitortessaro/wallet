@@ -36,6 +36,8 @@ model StockOperation {
   quantity      Int
   unitValue     Float
   operationType OperationType @default(BUY)
+  // operationType String
+  operationDate DateTime
 
   userId Int
   user   User @relation(fields: [userId], references: [id])
@@ -59,7 +61,7 @@ model UserStockInfo {
   stock     StockList @relation(fields: [stockCode], references: [stockCode])
 
   userId Int
-  user   User @relation(fields: [userId], references: [id])
+  User   User @relation(fields: [userId], references: [id])
 
   @@map("userStockInfo")
 }

@@ -22,10 +22,11 @@ CREATE TABLE "stockOperations" (
     "id" SERIAL NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
-    "StockCode" TEXT NOT NULL,
+    "stockCode" TEXT NOT NULL,
     "quantity" INTEGER NOT NULL,
     "unitValue" DOUBLE PRECISION NOT NULL,
     "operationType" "OperationType" NOT NULL DEFAULT 'BUY',
+    "operationDate" TIMESTAMP(3) NOT NULL,
     "userId" INTEGER NOT NULL,
 
     CONSTRAINT "stockOperations_pkey" PRIMARY KEY ("id")
