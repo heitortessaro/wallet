@@ -1,11 +1,12 @@
 import { Test } from '@nestjs/testing';
 import { AppModule } from '../src/app.module';
-import { INestApplication, ValidationPipe } from '@nestjs/common';
+import { HttpStatus, INestApplication, ValidationPipe } from '@nestjs/common';
 import { PrismaService } from '../src/prisma/prisma.service';
 // pactum is a request making library, so it need a server/api to make these requests
 import * as pactum from 'pactum';
 import { AuthDto } from '../src/auth/dto';
 import { EditUserDto } from '../src/user/dto';
+import { CreateStokeOperation } from 'src/stoke-operations/dto';
 
 describe('App e2e', () => {
   let app: INestApplication;
@@ -150,6 +151,47 @@ describe('App e2e', () => {
           .expectStatus(200)
           .expectBodyContains(dto.firstName)
           .expectBodyContains(dto.email);
+      });
+    });
+  });
+
+  describe('Stoke Operations', () => {
+    describe('Get empty stokeOperations', () => {
+      it('should get empty stokeOperations', () => {
+        return pactum
+          .spec()
+          .get('/stoke-operations')
+          .withHeaders({
+            Authorization: 'Bearer $S{userAthorizationToken}',
+          })
+          .expectStatus(HttpStatus.OK)
+          .expectBody([]);
+      });
+    });
+    describe('create stoke operation', () => {
+      const dto: CreateStokeOperation = {
+        stockCode: 'abcd3',
+        quantity: 100,
+        unitValue: 15.15,
+        operationType: 'BUY',
+        operationDate: new Date(2023, 4, 29),
+      };
+      console.log(dto.operationDate);
+      it('should create  stoke operation', () => {
+        return pactum
+          .spec()
+          .post('/stoke-operations')
+          .withHeaders({
+            Authorization: 'Bearer $S{userAthorizationToken}',
+          })
+          .withBody(dto)
+          .expectStatus(HttpStatus.CREATED)
+          .expectBodyContains(dto.stockCode)
+          .expectBodyContains(dto.quantity)
+          .expectBodyContains(dto.unitValue)
+          .expectBodyContains(dto.operationType)
+          .expectBodyContains(dto.operationDate)
+          .stores('stokeOperationId', 'id');
       });
     });
   });
