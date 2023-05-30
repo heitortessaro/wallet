@@ -5,7 +5,8 @@ import {
   IsNumber,
   IsString,
   Min,
-  IsDateString,
+  IsNotEmpty,
+  IsISO8601,
 } from 'class-validator';
 
 import { OperationType } from '@prisma/client';
@@ -38,8 +39,7 @@ export class EditStokeOperation {
   })
   operationType?: OperationType;
 
-  @IsString()
-  @IsOptional()
-  @IsDateString()
-  operationDate?: string;
+  @IsNotEmpty()
+  @IsISO8601()
+  operationDate: Date;
 }
