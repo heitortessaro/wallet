@@ -1,5 +1,4 @@
 import {
-  IsISO8601,
   IsEnum,
   IsInt,
   IsNotEmpty,
@@ -15,7 +14,7 @@ import { OperationType } from '@prisma/client';
 //   SELL = 'SELL',
 // }
 
-export class CreateStokeOperation {
+export class CreateStokeOperationTest {
   @IsString()
   @IsNotEmpty()
   stockCode: string;
@@ -39,6 +38,6 @@ export class CreateStokeOperation {
   operationType: OperationType;
 
   @IsNotEmpty()
-  @IsISO8601()
-  operationDate: Date;
+  @IsString()
+  operationDate: string;
 }
