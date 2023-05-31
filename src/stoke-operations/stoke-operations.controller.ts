@@ -15,6 +15,7 @@ import { JwtGuard } from '../auth/guard';
 import { StokeOperationsService } from './stoke-operations.service';
 import { GetUser } from '../auth/decorator';
 import { CreateStokeOperation, EditStokeOperation } from './dto';
+import { StringToDatePipe } from './pipes';
 
 @UseGuards(JwtGuard)
 @Controller('stoke-operations')
@@ -40,7 +41,7 @@ export class StokeOperationsController {
   @Post()
   createStokeOperation(
     @GetUser('id') userId: number,
-    @Body() dto: CreateStokeOperation,
+    @Body(StringToDatePipe) dto: CreateStokeOperation,
   ) {
     return this.stokeOperationsService.createStokeOperation(userId, dto);
   }
