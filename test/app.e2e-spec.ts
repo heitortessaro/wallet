@@ -6,7 +6,7 @@ import { PrismaService } from '../src/prisma/prisma.service';
 import * as pactum from 'pactum';
 import { AuthDto } from '../src/auth/dto';
 import { EditUserDto } from '../src/user/dto';
-import { CreateStokeOperation } from 'src/stoke-operations/dto';
+import { CreateStokeOperationTest } from '../src/stoke-operations/dto';
 
 describe('App e2e', () => {
   let app: INestApplication;
@@ -169,15 +169,15 @@ describe('App e2e', () => {
       });
     });
     describe('create stoke operation', () => {
-      const dto: CreateStokeOperation = {
+      const dto: CreateStokeOperationTest = {
         stockCode: 'abcd3',
         quantity: 100,
         unitValue: 15.15,
         operationType: 'BUY',
-        operationDate: new Date(2023, 4, 29),
+        operationDate: '2023-12-28',
       };
-      console.log(dto.operationDate);
-      it('should create  stoke operation', () => {
+
+      it('should create stoke operation', () => {
         return pactum
           .spec()
           .post('/stoke-operations')
